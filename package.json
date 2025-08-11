@@ -3,7 +3,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "seed": "node -e \"const https = require('https'); const http = require('http'); const url = process.env.SEED_URL || 'http://localhost:3000/seed'; console.log('Seeding database...'); const client = url.startsWith('https') ? https : http; const req = client.get(url, (res) => { let data = ''; res.on('data', chunk => data += chunk); res.on('end', () => { console.log('Seed completed:', data); process.exit(0); }); }); req.on('error', (err) => { console.error('Seed failed:', err.message); process.exit(1); });\""
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
